@@ -14,7 +14,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reset Password</title>
+    <title>Welcome Adik Kakak</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         body{ background-color:#D3D3D3; font: 14px sans-serif; }
@@ -24,6 +24,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body><p>&nbsp;</p>
 
 <div align="right">
-<a href="reset.php">reset password</a> | <a href="logout.php">logout</a> &nbsp; &nbsp; 
+Welcome <?=$_SESSION["username"];?> &nbsp; &nbsp;<br>
+<a href="reset.php">reset password</a> | <a href="logout.php">logout</a> &nbsp; &nbsp;
 </div>
+<?php
+include "satu.php";
+if(isset($_POST['thepage'])){
+?>
+<iframe src="<?=$_POST['thepage'].".php"?>" height="500px" width="100%" style="border:none;">></iframe>
+<?
+}
+?>
 </body></html>
