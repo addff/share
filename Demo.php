@@ -68,8 +68,9 @@ close_connection();
 function all_downloads() { 
 	global $files_array;
 	global $file_downloads;
+	global $directory;
 	foreach ($files_array as $val) { 
-		echo '<li><a href="download.php?file='.urlencode($val).'">'.$val
+		echo '<li><a href="download.php?folder='.$directory.'&file='.urlencode($val).'">'.$val
 			.'<span class="download-count" title="Times Downloaded">'
      			.(int)$file_downloads[$val]
 			.'</span> <span class="download-label">download</span></a></li>'; 
