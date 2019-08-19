@@ -1,16 +1,16 @@
 # share
 
 # setup
->CREATE USER 'username'@'localhost' IDENTIFIED BY 'the_password';
->GRANT ALL PRIVILEGES ON *.* TO 'user_name'@'localhost' WITH GRANT OPTION;
->CREATE USER 'username'@'%' IDENTIFIED BY 'the_password';
->GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION;
->SHOW GRANTS FOR username;
->FLUSH PRIVILEGES;
->CREATE DATABASE databasename
->GRANT ALL PRIVILEGES ON databasename.* TO 'user_name'@'localhost' WITH GRANT OPTION;
->FLUSH PRIVILEGES;
-
+```CREATE USER 'username'@'localhost' IDENTIFIED BY 'the_password';
+GRANT ALL PRIVILEGES ON *.* TO 'user_name'@'localhost' WITH GRANT OPTION;
+CREATE USER 'username'@'%' IDENTIFIED BY 'the_password';
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION;
+SHOW GRANTS FOR username;
+FLUSH PRIVILEGES;
+CREATE DATABASE databasename
+GRANT ALL PRIVILEGES ON databasename.* TO 'user_name'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
 ## mysql
 >use databasename
 >CREATE TABLE users (
