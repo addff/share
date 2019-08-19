@@ -1,4 +1,12 @@
 <?php
+// Initialize the session
+session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
 
 error_reporting(E_ALL^E_NOTICE);
 
@@ -28,6 +36,36 @@ if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+	$sql = "SELECT id FROM download_manager WHERE filename = ?";
+if($stmt = mysqli_prepare($conn, $sql)){
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            $param_username = $_GET['file'];
+
+            if(mysqli_stmt_execute($stmt)){
+                mysqli_stmt_store_result($stmt);
+                if(mysqli_stmt_num_rows($stmt) == 1){                    
+                    mysqli_stmt_bind_result($stmt, $id);
+                    if(mysqli_stmt_fetch($stmt)){
+                            $managerid = $id;
+                    }
+                } else{
+                    $manager_err = "No account found with that username.";
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+}
+
+$userid = $_SESSION["id"];
+        $sql = "INSERT INTO download_history (manager_id, user_id) VALUE (".$managerid.",".$userid.")";
+
+if(mysqli_query($conn, $sql)){
+    echo "Records inserted successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 }
 
 $conn->close();

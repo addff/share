@@ -11,7 +11,7 @@ CREATE DATABASE databasename
 GRANT ALL PRIVILEGES ON databasename.* TO 'user_name'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 
-# mysql
+## mysql
 use databasename
 CREATE TABLE users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -19,6 +19,14 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+### Experiment02
+mysql> CREATE TABLE download_history (
+    -> id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    -> manager_id INT NOT NULL,
+    -> user_id INT NOT NULL,
+    -> downloaded_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    -> );
 
 # resources
 https://tableplus.com/blog/2018/10/how-to-create-a-superuser-in-mysql.html
