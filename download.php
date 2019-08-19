@@ -6,9 +6,18 @@ require('connect.php');
 
 if(!$_GET['file']) error('Missing parameter!');
 if($_GET['file']{0}=='.') error('Wrong file!');
-
-
-if(file_exists($_GET['folder']."/".$_GET['file']))
+if($_GET['folder']=="cache"){
+	include 'symlink.php';
+	$cache=1;
+}
+if ($cache){
+	$current = $share_folder."/".$today."/".$timenow."_".$rand_64."/".$_GET['file']; 
+}
+else
+{
+	$current = $_GET['folder']."/".$_GET['file'];
+}
+if(file_exists($current))
 {
 	/* If the visitor is not a search engine, count the downoad: */
 	if(!is_bot())
@@ -25,12 +34,12 @@ $conn->close();
 
 } 
 
-	
-	header("Location: ".$_GET['folder']."/".$_GET['file']);
+	header("Location: ".$current);
 	exit;
 }
-else error("This file does not exist!");
-
+else{
+	error("This file does not exist!");
+}
 
 
 function error($str)
