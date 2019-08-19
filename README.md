@@ -1,7 +1,8 @@
 # share
 
 # setup
-```CREATE USER 'username'@'localhost' IDENTIFIED BY 'the_password';
+```
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'the_password';
 GRANT ALL PRIVILEGES ON *.* TO 'user_name'@'localhost' WITH GRANT OPTION;
 CREATE USER 'username'@'%' IDENTIFIED BY 'the_password';
 GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION;
@@ -13,7 +14,8 @@ FLUSH PRIVILEGES;
 ```
 
 ## mysql
-```use databasename
+```
+use databasename
 CREATE TABLE users (
     	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     	username VARCHAR(50) NOT NULL UNIQUE,
@@ -23,7 +25,8 @@ CREATE TABLE users (
 ```
 
 ### Experiment01
-```CREATE TABLE download_manager (
+```
+CREATE TABLE download_manager (
   	id int(6) unsigned NOT NULL auto_increment,
   	filename varchar(128) collate utf8_unicode_ci NOT NULL default '',
   	downloads int(10) unsigned NOT NULL default '1',
@@ -33,7 +36,8 @@ CREATE TABLE users (
 ```
 
 ### Experiment02
-```CREATE TABLE download_history (
+```
+CREATE TABLE download_history (
  	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  	manager_id INT NOT NULL,
  	user_id INT NOT NULL,
