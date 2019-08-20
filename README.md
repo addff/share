@@ -45,6 +45,17 @@ CREATE TABLE download_history (
  	downloaded_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 ```
+
+### Experiment04
+```
+CREATE TABLE pages (
+    	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    	pagename VARCHAR(50) NOT NULL,
+    	parentid INT NOT NULL,
+    	userid INT NOT NULL,
+    	created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
 # resources
 - https://tableplus.com/blog/2018/10/how-to-create-a-superuser-in-mysql.html
 - https://zemez.io/magento/support/how-to/create-new-database-database-user-grant-permissions-ssh/

@@ -28,11 +28,10 @@ Welcome <?=$_SESSION["username"];?> &nbsp; &nbsp;<br>//<?=$_SERVER['REMOTE_ADDR'
 <a href="reset.php">reset password</a> | <a href="logout.php">logout</a> &nbsp; &nbsp;
 </div>
 <?php
-include "satu.php";
 include "dua.php";
 if(isset($_POST['thepage'])){
 ?>
-<iframe src="<?=$_POST['thepage'].".php"?>" height="500px" width="100%" style="border:none;">></iframe>
+<iframe src="empat.php" height="500px" width="100%" style="border:none;">></iframe>
 <?
 }
 ?>
