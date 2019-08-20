@@ -24,7 +24,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body><p>&nbsp;</p>
 
 <div align="right">
-Welcome <?=$_SESSION["username"];?> &nbsp; &nbsp;<br>
+Welcome <?=$_SESSION["username"];?> &nbsp; &nbsp;<br>//<?=$_SERVER['REMOTE_ADDR'];?> &nbsp; &nbsp;<br>
 <a href="reset.php">reset password</a> | <a href="logout.php">logout</a> &nbsp; &nbsp;
 </div>
 <?php

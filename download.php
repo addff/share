@@ -65,8 +65,9 @@ if($stmt = mysqli_prepare($conn, $sql)){
 }
 
 $userid = $_SESSION["id"];
-        $sql = "INSERT INTO download_history (manager_id, user_id) 
-		VALUE (".$managerid.",".$userid.")";
+$userip = $_SERVER['REMOTE_ADDR'];
+$sql = "INSERT INTO download_history (manager_id, user_id, remote_addr)
+                VALUE (".$managerid.",".$userid.",'".$userip."')";
 
 if(mysqli_query($conn, $sql)){
     echo "Records inserted successfully.";
