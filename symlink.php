@@ -26,10 +26,8 @@ $rand_64 = substr(str_shuffle($permitted_chars), 0, 64);
 $folder_64 = $folder_date."/".$timenow."_".$rand_64;
 create_folder($folder_64);
 
-
-$target = $directory."/".$_GET['file'];
-$link = $folder_64."/".$_GET['file'];
-$download_link = $_SERVER['HTTP_REFERER'].$share_folder."/".$today."/".$timenow."_".$rand_64."/Archive.zip";
+$target = $directory."/".$clean_filename;
+$link = $folder_64."/".$clean_filename;
 
 
 symlink($target, $link);

@@ -8,6 +8,7 @@ if ($conn->connect_error) {
 } 
 
 function close_connection(){
+	global $conn;
 	mysqli_close($conn);
 }
 ?>

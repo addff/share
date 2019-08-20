@@ -7,6 +7,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+date_default_timezone_set("Asia/Kuala_Lumpur");
 
 error_reporting(E_ALL^E_NOTICE);
 
@@ -14,6 +15,7 @@ require('connect.php');
 
 if(!$_GET['file']) error('Missing parameter!');
 if($_GET['file']{0}=='.') error('Wrong file!');
+$clean_filename=mysqli_real_escape_string($conn, $_GET['file']);
 if($_GET['folder']=="cache"){
 	include 'symlink.php';
 	$cache=1;
@@ -30,9 +32,12 @@ if(file_exists($current))
 	/* If the visitor is not a search engine, count the downoad: */
 	if(!is_bot())
 { 
-	$sql = "INSERT INTO download_manager SET filename='".$_GET['file']."' ON DUPLICATE KEY UPDATE downloads=downloads+1";
+	$sql = "INSERT INTO download_manager SET filename='"
+		.$clean_filename
+		."' ON DUPLICATE KEY UPDATE downloads=downloads+1";
 
 if ($conn->query($sql) === TRUE) {
+
     echo "New record created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -40,8 +45,8 @@ if ($conn->query($sql) === TRUE) {
 
 	$sql = "SELECT id FROM download_manager WHERE filename = ?";
 if($stmt = mysqli_prepare($conn, $sql)){
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-            $param_username = $_GET['file'];
+            mysqli_stmt_bind_param($stmt, "s", $param_filename);
+            $param_filename = $clean_filename;
 
             if(mysqli_stmt_execute($stmt)){
                 mysqli_stmt_store_result($stmt);
@@ -51,7 +56,7 @@ if($stmt = mysqli_prepare($conn, $sql)){
                             $managerid = $id;
                     }
                 } else{
-                    $manager_err = "No account found with that username.";
+                    $manager_err = "There are no such file with that filename.";
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -60,7 +65,8 @@ if($stmt = mysqli_prepare($conn, $sql)){
 }
 
 $userid = $_SESSION["id"];
-        $sql = "INSERT INTO download_history (manager_id, user_id) VALUE (".$managerid.",".$userid.")";
+        $sql = "INSERT INTO download_history (manager_id, user_id) 
+		VALUE (".$managerid.",".$userid.")";
 
 if(mysqli_query($conn, $sql)){
     echo "Records inserted successfully.";
@@ -68,8 +74,7 @@ if(mysqli_query($conn, $sql)){
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 }
 
-$conn->close();
-
+//$conn->close();
 } 
 
 	header("Location: ".$current);
@@ -107,4 +112,6 @@ function is_bot()
 
 	return false;	// Not a bot
 }
+
+close_connection();
 ?>
