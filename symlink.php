@@ -1,7 +1,12 @@
 <?php
 
+include 'enc.php';
+
 $share_folder = "cache";
-$directory="/home/shah/demo-files-replace-this-as-movie";
+//$directory="/home/shah/demo-files-replace-this-as-movie";
+//$directory="/home/shah/201908-August";
+//$directory="/home/shah/201909-September";
+$directory=encrypt_decrypt('decrypt', $_GET['key']);
 date_default_timezone_set("Asia/Kuala_Lumpur");
 
 

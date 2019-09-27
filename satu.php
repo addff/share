@@ -8,7 +8,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <div align="center">
 <form action = "welcome.php" method="post">
-<input type="submit" name="thepage" value="Demo">
-<input type="submit" name="thepage" value="Movie">
+<?php
+//echo '<input type="submit" name="thepage" value="Demo"> ';
+?>
+<input type="submit" name="thepage" value="August">
+<input type="submit" name="thepage" value="September">
 </form>
 </div>

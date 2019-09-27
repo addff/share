@@ -11,7 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 error_reporting(E_ALL^E_NOTICE);
 
 require 'connect.php';
-$directory="/home/shah/demo-files-replace-this-as-movie";
+$directory="/home/shah/201909-September";
 $extension='';
 $files_array = array();
 $dir_handle = @opendir($directory) or die("There is an error with your file directory!");
@@ -64,13 +64,17 @@ close_connection();
 
     <ul class="manager">
 <?php
+include 'enc.php';
+$plain_txt = $directory;
+$encrypted_txt = encrypt_decrypt('encrypt', $plain_txt);
 
 function all_downloads() { 
 	global $files_array;
 	global $file_downloads;
+	global $encrypted_txt;
 	
 	foreach ($files_array as $val) { 
-		echo '<li><a href="download.php?folder=cache&file='.urlencode($val).'">'.$val
+		echo '<li><a href="download.php?key='.$encrypted_txt.'&folder=cache&file='.urlencode($val).'">'.$val
 			.'<span class="download-count" title="Times Downloaded">'
      			.(int)$file_downloads[$val]
 			.'</span> <span class="download-label">right click to download</span></a></li>'; 
@@ -80,6 +84,7 @@ function all_downloads() {
 all_downloads() ;
 
 ?>
+
   </ul>
 
 </div>

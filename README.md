@@ -1,50 +1,38 @@
 # share
-v1.2
-
-# setup
-```
-CREATE USER 'username'@'localhost' IDENTIFIED BY 'the_password';
-GRANT ALL PRIVILEGES ON *.* TO 'user_name'@'localhost' WITH GRANT OPTION;
-CREATE USER 'username'@'%' IDENTIFIED BY 'the_password';
-GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION;
-SHOW GRANTS FOR username;
-FLUSH PRIVILEGES;
-CREATE DATABASE databasename
-GRANT ALL PRIVILEGES ON databasename.* TO 'user_name'@'localhost' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
-```
+v1.3
 
 ## mysql
 ```
-use databasename
-CREATE TABLE users (
-    	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    	username VARCHAR(50) NOT NULL UNIQUE,
-    	password VARCHAR(255) NOT NULL,
-    	created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+CREATE TABLE `download_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `manager_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `downloaded_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `testing` tinyint(1) DEFAULT NULL,
+  `remote_addr` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `download_manager` (
+  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `filename` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `downloads` int(10) unsigned NOT NULL DEFAULT '1',
+  `testing` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `filename` (`filename`)
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `special` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 ```
 
-### Experiment01
-```
-CREATE TABLE download_manager (
-  	id int(6) unsigned NOT NULL auto_increment,
-  	filename varchar(128) collate utf8_unicode_ci NOT NULL default '',
-  	downloads int(10) unsigned NOT NULL default '1',
-  	PRIMARY KEY  ('id'),
-  	UNIQUE KEY 'filename' ('filename')
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-```
-
-### Experiment02
-```
-CREATE TABLE download_history (
- 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
- 	manager_id INT NOT NULL,
- 	user_id INT NOT NULL,
- 	downloaded_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-```
 # resources
 - https://tableplus.com/blog/2018/10/how-to-create-a-superuser-in-mysql.html
 - https://zemez.io/magento/support/how-to/create-new-database-database-user-grant-permissions-ssh/
