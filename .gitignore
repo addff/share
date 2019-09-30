@@ -1,6 +1,6 @@
 .gitignore
 .sql
 janganshare.txt
-config.php
+lib/config.php
 shell.php
 cache/
