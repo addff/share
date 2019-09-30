@@ -28,15 +28,17 @@ Welcome <?=$_SESSION["username"];?> &nbsp; &nbsp;<br><!-- <?=$_SERVER['REMOTE_AD
 <a href="reset.php">reset password</a> | <a href="logout.php">logout</a> &nbsp; &nbsp;
 </div>
 <?php
-include "dua.php";
+include 'lib/enc.php';
+include 'dua.php';
 if(isset($_POST['thepage'])){
+$encrypted_txt = encrypt_decrypt('encrypt', $_POST['thepage']);
 	if($debug){
 ?>
 id=<?=$_POST['thepage']?>
 <?php
 	}
 ?>
-<iframe src="tiga.php?dua=<?=$_POST['thepage']?>" height="500px" width="100%" style="border:none;">></iframe>
+<iframe src="tiga.php?dua=<?=$encrypted_txt?>" height="500px" width="100%" style="border:none;">></iframe>
 <?
 }
 ?>

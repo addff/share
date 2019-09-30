@@ -11,6 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 error_reporting(E_ALL^E_NOTICE);
 
 require 'lib/connect.php';
+require 'lib/enc.php';
 $directory="/home/shah/demo-files-replace-this-as-movie";
 $extension='';
 $files_array = array();
@@ -62,7 +63,9 @@ close_connection();
 <?php
 if ($debug){
 ?>
-id=<?=$_GET['dua']?>
+id=<?=$_GET['dua']?>(encrypt)
+<br>
+id=<?=encrypt_decrypt('decrypt', $_GET['dua']);?>
 <?php
 }
 ?>
