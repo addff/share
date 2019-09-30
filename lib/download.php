@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: ../login.php");
     exit;
 }
 date_default_timezone_set("Asia/Kuala_Lumpur");
@@ -25,7 +25,7 @@ if ($cache){
 }
 else
 {
-	$current = $_GET['folder']."/".$_GET['file'];
+	$current = "../".$_GET['folder']."/".$_GET['file'];
 }
 if(file_exists($current))
 {

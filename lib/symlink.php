@@ -2,7 +2,7 @@
 
 include 'enc.php';
 
-$share_folder = "cache";
+$share_folder = "../cache";
 //$directory="/home/shah/demo-files-replace-this-as-movie";
 //$directory="/home/shah/201908-August";
 //$directory="/home/shah/201909-September";
