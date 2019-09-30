@@ -11,7 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 error_reporting(E_ALL^E_NOTICE);
 
 require 'lib/connect.php';
-require 'lib/enc.php';
+include 'lib/enc.php';
 
 $id=encrypt_decrypt('decrypt', $_GET['dua']);
 $sql2="SELECT path FROM pages WHERE id =".$id.";";
@@ -28,7 +28,7 @@ if ($result2=mysqli_query($conn,$sql2))
 }
 
 
-$directory="/home/shah/demo-files-replace-this-as-movie";
+//$directory="/home/shah/demo-files-replace-this-as-movie";
 //$directory="/home/shah/z/share/files";
 $extension='';
 $files_array = array();
@@ -95,7 +95,6 @@ dir=<?=$directory?>
 
     <ul class="manager">
 <?php
-include 'lib/enc.php';
 $plain_txt = $directory;
 $encrypted_txt = encrypt_decrypt('encrypt', $plain_txt);
 
