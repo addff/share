@@ -12,10 +12,29 @@ error_reporting(E_ALL^E_NOTICE);
 
 require 'lib/connect.php';
 require 'lib/enc.php';
+
+$id=encrypt_decrypt('decrypt', $_GET['dua']);
+$sql2="SELECT path FROM pages WHERE id =".$id.";";
+
+if ($result2=mysqli_query($conn,$sql2))
+  {
+  // Fetch one and one row
+  while ($row2=mysqli_fetch_row($result2))
+    {
+    $directory = $row2[0];
+    }
+  // Free result set
+  mysqli_free_result($result2);
+}
+
+
 $directory="/home/shah/demo-files-replace-this-as-movie";
+//$directory="/home/shah/z/share/files";
 $extension='';
 $files_array = array();
 $dir_handle = @opendir($directory) or die("There is an error with your file directory!");
+
+
 
 while ($file = readdir($dir_handle))
 {
@@ -66,9 +85,12 @@ if ($debug){
 id=<?=$_GET['dua']?>(encrypt)
 <br>
 id=<?=encrypt_decrypt('decrypt', $_GET['dua']);?>
+<br>
+dir=<?=$directory?>	
 <?php
 }
 ?>
+
 <div id="file-manager">
 
     <ul class="manager">
