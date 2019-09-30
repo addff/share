@@ -43,7 +43,6 @@ if ($result->num_rows > 0) {
     echo "0 results"; 
 } 
 close_connection();
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -60,6 +59,13 @@ close_connection();
 </head>
 
 <body>
+<?php
+if ($debug){
+?>
+id=<?=$_GET['dua']?>
+<?php
+}
+?>
 <div id="file-manager">
 
     <ul class="manager">
@@ -82,7 +88,6 @@ function all_downloads() {
 } 
 
 all_downloads() ;
-
 ?>
   </ul>
 

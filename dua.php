@@ -8,28 +8,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <div align="center">
 <form action = "welcome.php" method="post">
-
 <?php
 	require('lib/connect.php');
 	$userid = $_SESSION["id"];
-        $sql = "SELECT pagename FROM pages WHERE userid = ".$userid;
-	if ($result = mysqli_query($conn, $sql))
-		while($row = mysqli_fetch_row($result)){
-			if($row[0]=="Demo"){
+        $sql = "SELECT pagename, id FROM pages WHERE userid = ".$userid;
+	$result = $conn->query($sql);
+	while($row = $result->fetch_array()){
+		$rows[] = $row;
+	}
+		
+	foreach($rows as $row){
 ?>
-<input type="submit" name="thepage" value="<?=$row[0]?>">
+<button name="thepage" type="submit" value="<?=$row['id']?>"><?=$row['pagename']?></button>
 <?php
-			}
-			else{
-?>
-<button name="thepage" type="submit" value="tiga"><?=$row[0]?></button>
-<?php
-}
-		}
-	mysqli_free_result($result);
+	}
+	$result->close();
 	close_connection();
 
 ?>
-
 </form>
 </div>

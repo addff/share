@@ -30,8 +30,13 @@ Welcome <?=$_SESSION["username"];?> &nbsp; &nbsp;<br><!-- <?=$_SERVER['REMOTE_AD
 <?php
 include "dua.php";
 if(isset($_POST['thepage'])){
+	if($debug){
 ?>
-<iframe src="<?=$_POST['thepage'].".php"?>" height="500px" width="100%" style="border:none;">></iframe>
+id=<?=$_POST['thepage']?>
+<?php
+	}
+?>
+<iframe src="tiga.php?dua=<?=$_POST['thepage']?>" height="500px" width="100%" style="border:none;">></iframe>
 <?
 }
 ?>
