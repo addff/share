@@ -47,6 +47,7 @@ CREATE TABLE `users` (
 ## features
 - create lib directory
 - directory refer to path in database
+- user can view their page only
 - one directory page on tiga
 - remove all directory pages
 
