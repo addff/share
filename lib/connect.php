@@ -11,4 +11,5 @@ function close_connection(){
 	global $conn;
 	mysqli_close($conn);
 }
+
 ?>
