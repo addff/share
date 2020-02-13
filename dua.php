@@ -11,7 +11,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <?php
 	require('lib/connect.php');
 	$userid = $_SESSION["id"];
-        $sql = "SELECT pagename, id FROM pages WHERE userid = ".$userid;
+if($share_from_admin){
+        $sql = "SELECT pagename, id FROM pages WHERE userid = 1 ORDER BY order_q ASC";
+}
+else
+{
+	$sql = "SELECT pagename, id FROM pages WHERE userid = ".$userid;
+}
 	$result = $conn->query($sql);
 	while($row = $result->fetch_array()){
 		$rows[] = $row;
