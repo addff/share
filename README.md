@@ -1,7 +1,58 @@
 # share
-v1.4
+v1.5
+## bash script
+```
+#!/bin/bash
+alllogs=".history_md5kan.log"
+#log_0="log_0.txt"
 
-## mysql
+echo -e "Original Path:" | tee -a $alllogs
+#read oripath
+oripath="/usr/home/shah/201908-August/"
+#echo -e $oripath >> $alllogs
+#echo -e $oripath > $log_0
+#while IFS= read -r line
+#do
+#  echo "$line"
+#done < "$log_0"
+echo -e $oripath | tee -a $alllogs
+
+echo -e "Original Filename: \c" | tee -a $alllogs
+read orifilename
+echo -e $orifilename | tee -a $alllogs
+
+echo -e "md5 checksum" | tee -a $alllogs
+md5file=$(md5 -q $oripath$orifilename)
+echo -e $md5file | tee -a $alllogs
+
+echo -e "First 3 checksum" | tee -a $alllogs
+first3=${md5file:0:3}
+echo -e $first3 | tee -a $alllogs
+
+echo -e "New path" | tee -a $alllogs
+#read newpath
+newpath="/usr/home/shah/sharedata/alldata/$first3/"
+echo -e $newpath | tee -a $alllogs
+echo -e "Make new directory" | tee -a $alllogs
+mkdir -p $newpath
+echo -e "Copying..."
+cp $oripath$orifilename $newpath$md5file
+
+echo -e "Symlink path" | tee -a $alllogs
+#read symlinkpath
+symlinkpath="/usr/home/shah/sharedata/userdata/1/1575808455/"
+echo -e $symlinkpath | tee -a $alllogs
+
+echo -e "Create symbolic link" | tee -a $alllogs
+ln -s $newpath$md5file $symlinkpath$orifilename
+echo -e $newpath$md5file | tee -a $alllogs
+echo -e "Done!" | tee -a $alllogs
+echo -e "" | tee -a $alllogs
+echo -e "**********************************************" | tee -a $alllogs
+echo -e "" | tee -a $alllogs
+echo -e "" | tee -a $alllogs
+```
+## mysql (this is v1.4) will update later
 ```
 CREATE TABLE `download_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
