@@ -25,9 +25,11 @@
 			<ul>
 				<!-- The file uploads will be shown here -->
 			</ul>
-
+			
 		</form>
-
+		<div align="center">
+			<textarea name="desc" form="upload">Enter file descriptions</textarea>
+		</div>
 		
         
 		<!-- JavaScript Includes -->
