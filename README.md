@@ -1,5 +1,5 @@
 # share
-v1.5
+v1.6
 
 ## bash script
 ```
@@ -72,31 +72,96 @@ SET FOREIGN_KEY_CHECKS=0;
 -- Table structure for download_history
 -- ----------------------------
 DROP TABLE IF EXISTS `download_history`;
-CREATE TABLE `download_history` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `manager_id` int(11) NOT NULL,  `user_id` int(11) NOT NULL,  `downloaded_at` datetime DEFAULT CURRENT_TIMESTAMP,  `remote_addr` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,  `testing` tinyint(1) DEFAULT NULL,  PRIMARY KEY (`id`)) ENGINE=MyISAM AUTO_INCREMENT=300 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `download_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `manager_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `downloaded_at` datetime DEFAULT current_timestamp(),
+  `remote_addr` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `testing` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for download_manager
 -- ----------------------------
 DROP TABLE IF EXISTS `download_manager`;
-CREATE TABLE `download_manager` (  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,  `filename` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',  `downloads` int(10) unsigned NOT NULL DEFAULT '1',  `testing` tinyint(1) DEFAULT NULL,  PRIMARY KEY (`id`),  UNIQUE KEY `filename` (`filename`)) ENGINE=MyISAM AUTO_INCREMENT=300 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `download_manager` (
+  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `filename` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `downloads` int(10) unsigned NOT NULL DEFAULT 1,
+  `testing` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `filename` (`filename`)
+) ENGINE=MyISAM AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for files
 -- ----------------------------
 DROP TABLE IF EXISTS `files`;
-CREATE TABLE `files` (  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,  `manage_id` int(6) DEFAULT NULL,  `pages_id` int(11) DEFAULT NULL,  `filenamefullpath` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',  `real_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,  `md5_checksum` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,  PRIMARY KEY (`id`),  UNIQUE KEY `filename` (`filenamefullpath`)) ENGINE=MyISAM AUTO_INCREMENT=300 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `files` (
+  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `manage_id` int(6) DEFAULT NULL,
+  `pages_id` int(11) DEFAULT NULL,
+  `filenamefullpath` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `real_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `real_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `md5_checksum` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Table structure for logs
+-- ----------------------------
+DROP TABLE IF EXISTS `logs`;
+CREATE TABLE `logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `all_user_id` int(11) NOT NULL,
+  `all_logs` varchar(128) COLLATE utf8_unicode_ci DEFAULT '',
+  `all_status` varchar(128) COLLATE utf8_unicode_ci DEFAULT '',
+  `downloaded_at` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for pages
 -- ----------------------------
 DROP TABLE IF EXISTS `pages`;
-CREATE TABLE `pages` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `pagename` varchar(50) COLLATE utf8_unicode_ci NOT NULL,  `parentid` int(11) NOT NULL,  `userid` int(11) NOT NULL,  `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,  `order_q` int(11) DEFAULT NULL,  `epoch_int` int(11) DEFAULT NULL,  PRIMARY KEY (`id`)) ENGINE=MyISAM AUTO_INCREMENT=300 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `pages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pagename` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `parentid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `order_q` int(11) DEFAULT NULL,
+  `epoch_int` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Table structure for testingg
+-- ----------------------------
+DROP TABLE IF EXISTS `testingg`;
+CREATE TABLE `testingg` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `apa_apa_jer` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,  `special` tinyint(1) DEFAULT NULL,  PRIMARY KEY (`id`),  UNIQUE KEY `username` (`username`)) ENGINE=MyISAM AUTO_INCREMENT=300 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `special` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ```
 
 ## features
