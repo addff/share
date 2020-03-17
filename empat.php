@@ -13,8 +13,13 @@
 	</head>
 
 	<body>
+		<div align="center">
+			<textarea name="desc" form="upload" rows="3" cols="80" placeholder ="Enter file descriptions. Single line per each"></textarea>
+		</div>
 
 		<form id="upload" method="post" action="lima.php" enctype="multipart/form-data">
+			<div align="center" ><input type="text" name="oripath" placeholder="Original Path" /><div>
+			<br>
 			<div id="drop">
 				Drop Here
 
@@ -27,9 +32,7 @@
 			</ul>
 			
 		</form>
-		<div align="center">
-			<textarea name="desc" form="upload">Enter file descriptions</textarea>
-		</div>
+		
 		
         
 		<!-- JavaScript Includes -->
